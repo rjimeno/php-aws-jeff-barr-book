@@ -1,0 +1,10 @@
+
+# Temporary files of every sort
+.DS_Store
+.idea
+*.swap
+*.swo
+*.swp
+*~
+*#
+
