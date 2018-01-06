@@ -10,19 +10,13 @@
 error_reporting(E_ALL);
 
 require 'vendor/autoload.php';
-require_once('include/book.inc.php');
+require_once('include/book.inc.php'); // $sqsClientOptions
 
 use Aws\Sqs\SqsClient;
 
 if (count($argv) < 2) {
     exit("Usage: " . $argv[0] . " QUEUE...\n");
 }
-
-$sqsClientOptions = [
-    'region' => 'us-east-1',
-    'version' => '2012-11-05',
-    'profile' => 'default'
-];
 
 $sqs = new SqsClient($sqsClientOptions);
 
@@ -38,4 +32,4 @@ for ($i = 1; $i < count($argv); $i++) {
     print("The queue '${queue}' was created successfully.'");
     // print_r($res);
 }
-
+?>

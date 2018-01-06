@@ -4,6 +4,7 @@ define('BOOK_BUCKET', 'rjimeno-sitepoint-aws-cloud-book');
 define('THUMB_BUCKET_SUFFIX', '-thumbs');
 define('THUMB_SIZE', 200);
 define('S3_ACL_PUBLIC', 'public-read');
+require_once('chapter06.inc.php'); // $sqsClientOptions
 
 $s3clientArgs = array(
     'region'    => 'us-east-1',
