@@ -43,4 +43,4 @@ for ($i = 2; $i < count($argv); $i++) {
     // print_r($res);
 }
 print('Message(s) sent successfully.');
-
+?>

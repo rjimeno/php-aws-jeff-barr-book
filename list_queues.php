@@ -31,5 +31,4 @@ try {
 foreach ($res['QueueUrls'] as $URL) {
     print $URL;
 }
-
-
+?>
