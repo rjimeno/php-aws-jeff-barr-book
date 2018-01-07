@@ -4,12 +4,8 @@ define('BOOK_BUCKET', 'rjimeno-sitepoint-aws-cloud-book');
 define('THUMB_BUCKET_SUFFIX', '-thumbs');
 define('THUMB_SIZE', 200);
 define('S3_ACL_PUBLIC', 'public-read');
+require_once('chapter04.inc.php'); // $s3clientArgs
 require_once('chapter06.inc.php'); // $sqsClientOptions
-
-$s3clientArgs = array(
-    'region'    => 'us-east-1',
-    'version'   => '2006-03-01',
-);
 
 if (isset($argc) && $argc>1) {
     $bucketArgs = array(
@@ -33,19 +29,6 @@ function getBucketObjects($s3, $bucket) {
     }
 
     return $objects;
-}
-
-function uploadObject($client, $bucket, $pathToFile, $data) {
-    $result = $client->putObject(array(
-        'Bucket'    => $bucket,
-        'Key'       => $pathToFile,
-        'Body'      => $data,
-    ));
-
-    $client->waitUntil('ObjectExists', array(
-        'Bucket' => $bucket,
-        'Key'    => $pathToFile
-    ));
 }
 
 function guessType($file) {

@@ -17,7 +17,7 @@ $sqsClientOptions = [
     'profile' => 'default'
 ];
 
-function findQueueUrl($sqs, $queueName) {
+function findQueueURL($sqs, $queueName) {
     try {
         $res = $sqs->createQueue(['QueueName' => $queueName]);
     } catch (Exception $e) {
@@ -30,9 +30,9 @@ function findQueueUrl($sqs, $queueName) {
 function pullMessage($sqs, $queueURL) {
     while(true) {
         try {
-            $res = $sqs->receiveMessage(['QueueUrl' => $argv[1]]);
+            $res = $sqs->receiveMessage(['QueueUrl' => $queueURL]);
         } catch (Exception $e) {
-            echo "Unable to receive message from queue '${argv[1]}': ", $e->getMessage(), "\n";
+            echo "Unable to receive message from queue '$queueURL': ", $e->getMessage(), "\n";
             exit($e->getCode()); // return null; instead?
         }
         if(isset($res['Messages'])) {
@@ -49,7 +49,7 @@ function pullMessage($sqs, $queueURL) {
                 'ReceiptHandle' => $receiptHandle
             );
         } else {
-            sleep(1);
+            return null; // Tightly couples the calling function.
         }
     }
 }

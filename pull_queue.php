@@ -10,7 +10,7 @@
 error_reporting(E_ALL);
 
 require 'vendor/autoload.php';
-require_once('include/book.inc.php'); //  $sqsClientOptions
+require_once('include/book.inc.php'); // $sqsClientOptions
 
 use Aws\Sqs\SqsClient;
 
@@ -45,7 +45,7 @@ while(true) {
         }
         sleep(1);
     } else {
-        exit(0); // No more messages in the queue!ph
+        exit(0); // No more messages in the queue!
     }
 }
 

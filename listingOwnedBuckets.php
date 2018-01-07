@@ -11,7 +11,8 @@ $s3Client = new s3Client([
     'version' => '2006-03-01'
 ]);
 
-$buckets = $s3Client->listBuckets();
+// The following line should be inside a try-catch instead.
+$buckets = $s3Client->listBuckets(); // Will fail if DNS can't resolve.
 foreach ($buckets['Buckets'] as $bucket) {
         echo $bucket['Name'] . "\n";
 }
