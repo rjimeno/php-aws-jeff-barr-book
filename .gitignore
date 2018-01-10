@@ -3,6 +3,7 @@ composer.phar
 # Temporary files of every sort
 .DS_Store
 .idea
+include/advanced_html_dom.php
 *.swap
 *.swo
 *.swp

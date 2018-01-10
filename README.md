@@ -16,11 +16,12 @@ Chapter 6:
 * list_queues.php
 * crawl_queue_status.php
 * load_crawl_urls.php
-ca* post_queue.php
-* pull_queue.php
 * fetch_page.php
 * parse_page.php
+* post_queue.php
+* pull_queue.php
 
-Note: The file simple_html_dom.php
-under include/ was downloaded.
+Note: The file advanced_html_dom.php
+under include/ was downloaded from
+https://github.com/monkeysuffrage/advanced_html_dom.
 
