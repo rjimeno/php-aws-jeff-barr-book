@@ -8,6 +8,7 @@
  */
 
 error_reporting(E_ALL);
+define('DEBUG', true); // Set to true to obtain debugging messages.
 
 require 'vendor/autoload.php';
 require_once('include/book.inc.php');  // $s3ClientArgs & $sqsClientOptions.
@@ -25,12 +26,20 @@ while(true) {
     $message = pullMessage($sqs, $queueURL);
 
     if ($message != null) {
+        DEBUG && print_r($message);
         $messageDetail = $message['MessageDetail'];
         $receiptHandle = $message['ReceiptHandle'];
         $pageURL = $messageDetail['Data'];
 
         print("Processing URL '${pageURL}':\n");
-        $html = file_get_contents($pageURL);
+        try {
+            $html = file_get_contents($pageURL);
+            if ($html === false) {
+                die("Unable to get the content of '${pageURL}'.\n");
+            }
+        } catch (Exception $e) {
+            echo "Unable to get the content of '${pageURL}': " . $e->getMessage() . "\n";
+        }
         print("  Retrieved " . strlen($html) . " bytes of HTML.\n");
 
         $key = 'page_' . md5($pageURL) . '.html';
@@ -41,7 +50,7 @@ while(true) {
             $origin = $messageDetail['Origin'];
             $history = $messageDetail['History'];
             $history[] = 'Fetched by ' . $argv[0] . ' at ' . date('c');
-            //$message = '[]';
+
             $message = json_encode(array(
                 'Action'  => 'ParsePage',
                 'Origin'  => $origin,

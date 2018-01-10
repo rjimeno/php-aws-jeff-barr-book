@@ -8,6 +8,7 @@
  */
 
 error_reporting(E_ALL);
+define('DEBUG', true); // Set to true to obtain debugging messages.
 
 require 'vendor/autoload.php';
 require_once('include/book.inc.php'); // $sqsClientOptions
@@ -29,6 +30,7 @@ for ($i = 1; $i < $argc; $i++) {
         'Data'    => $argv[$i],
         'History' => $histItem
     ));
+    DEBUG && print_r($message);
     try {
         $res = $sqs->sendMessage([
             'MessageBody' => $message,

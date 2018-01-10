@@ -20,7 +20,7 @@ function uploadObject(
     $bucket,
     $key,
     $data,
-    $acl = S3_ACL_PRIVATE,
+    $acl = S3_ACL_PUBLIC,
     $contentType = "text/plain")
 {
 

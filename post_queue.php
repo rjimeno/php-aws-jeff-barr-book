@@ -10,19 +10,13 @@
 error_reporting(E_ALL);
 
 require 'vendor/autoload.php';
-require_once('include/book.inc.php');
+require_once('include/book.inc.php'); // $sqsClientOptions is defined there.
 
 use Aws\Sqs\SqsClient;
 
 if (count($argv) < 3) {
     exit("Usage: " . $argv[0] . " QUEUE_URL ITEM1 ...\n");
 }
-
-$sqsClientOptions = [
-    'region' => 'us-east-1',
-    'version' => '2012-11-05',
-    'profile' => 'default'
-];
 
 $sqs = new SqsClient($sqsClientOptions);
 
