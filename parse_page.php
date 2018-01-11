@@ -8,13 +8,12 @@
  */
 
 error_reporting(E_ALL);
-ini_set('memory_limit', '4096M');
+
 define('DEBUG', false); // Set to true to display debugging messages.
 define('FBF', 16); // A four-by-four matrix has 16 squares.
 
 require 'vendor/autoload.php';
 require_once('include/book.inc.php'); // $s3clientArgs & $sqsClientOptions.
-//require_once('include/simple_html_dom.php');
 require_once('include/advanced_html_dom.php');
 
 use Aws\Sqs\SqsClient;
@@ -37,16 +36,8 @@ while(true) {
 
         print("Processing URL '${pageURL}':\n");
         $dom = new AdvancedHtmlDom();
-        // $dom->clear();
-        // unset($dom);
         try {
             $dom->load_file($pageURL);
-            // $dom = file_get_html($pageURL);
-            // $data = file_get_contents($pageURL);
-            /* $data = '
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-'; */
-            // $dom = str_get_html($data);
         } catch (Exception $e) {
             echo "Unable to load '${pageURL}': " . $e->getMessage() . "\n";
             exit($e->getCode());
@@ -57,31 +48,29 @@ while(true) {
         if (!is_object($dom)) {
             die("We couldn't properly load the DOM as it is not an object.");
         }
-        DEBUG && print("NODES: " . "\n");
-        DEBUG && print_r($dom);
+
         $pageTitle = $dom->find('title', 0)->innertext;
-        print(" Retreived page '${pageTitle}'.\n");
+        print(" Retrieved page '${pageTitle}'.\n");
 
 
         $imageURLs = array();
-        DEBUG && print("WILL work with:\n");
-        DEBUG && print_r($dom->find('img'));
-        DEBUG && print("\n");
         foreach ($dom->find('img') as $image) {
             $imageURL = $image->src;
-            DEBUG && print("ABOUT to process ${imageURL}.\n");
             if (substr($imageURL, 0, 4) == 'http') {
-                DEBUG && print("DID    match: ${imageURL}.\n");
-                print(" Found absolute URL '${imageURL}'.\n");
-                $imageURLs[] = $imageURL;
-                DEBUG && print("PRE-PROCESSING image number " . count($imageURLs));
-                if (count($imageURLs) == FBF) {
-                    break;
+                $url=parse_url($imageURL);
+                if(substr($url['path'], -4, 4 ) != '.svg') {
+                    print(" Found absolute URL '${imageURL}'.\n");
+                    $imageURLs[] = $imageURL;
+                    if (count($imageURLs) == FBF) {
+                        break;
+                    }
+                } else {
+                    // The only format not working is .svg
                 }
-            } else {
-                DEBUG && print("DIDN'T match: ${imageURL}.\n");
             }
         }
+
+        DEBUG && print_r($imageURLs);
 
         if (count($imageURLs) > 0) {
             $origin = $messageDetail['Origin'];
@@ -113,8 +102,13 @@ while(true) {
                 echo "Unable to delete message with handle '${receiptHandle}' from queue '${queueParse}': ", $e->getMessage(), "\n";
                 exit($e->getCode());
             }
+            print("Deleted message from parse queue.\n");
             print("\n");
         }
+
+
+
+
     }
 }
 ?>

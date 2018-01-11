@@ -57,7 +57,11 @@ function guessType($file) {
 }
 
 function thumbnailImage($imageBitsIn, $contentType){
-    $imageIn = ImageCreateFromString($imageBitsIn);
+    // $imageIn = ImageCreateFromString(($imageBitsIn));
+    $imageIn = imagecreatefromstring(($imageBitsIn));
+    if ($imageIn === false) {
+        die("Unable to create image from string '${imageBitsIn}'.\n");
+    }
     $inX = ImageSx($imageIn);
     $inY = ImageSy($imageIn);
 
