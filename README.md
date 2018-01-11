@@ -12,14 +12,16 @@ Chapter 5:
 
 Chapter 6:
 * include/chapter06.php
-* create_queues.php
-* list_queues.php
 * crawl_queue_status.php
-* load_crawl_urls.php
+* create_queues.php
+* fetch_images.php
 * fetch_page.php
+* list_queues.php
+* load_crawl_urls.php
 * parse_page.php
 * post_queue.php
 * pull_queue.php
+* render_images.php
 
 Note: The file advanced_html_dom.php
 under include/ was downloaded from
