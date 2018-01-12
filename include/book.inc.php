@@ -6,6 +6,7 @@ define('THUMB_SIZE', 200);
 define('S3_ACL_PUBLIC', 'public-read');
 require_once('chapter04.inc.php'); // $s3clientArgs
 require_once('chapter06.inc.php'); // $sqsClientOptions
+require_once('chapter07.inc.php'); // $ec2clientArguments
 
 if (isset($argc) && $argc>1) {
     $bucketArgs = array(

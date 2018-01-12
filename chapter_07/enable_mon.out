@@ -1,0 +1,48 @@
+Aws\Result Object
+(
+    [data:Aws\Result:private] => Array
+        (
+            [InstanceMonitorings] => Array
+                (
+                    [0] => Array
+                        (
+                            [InstanceId] => i-0e4827c4d02891661
+                            [Monitoring] => Array
+                                (
+                                    [State] => pending
+                                )
+
+                        )
+
+                )
+
+            [@metadata] => Array
+                (
+                    [statusCode] => 200
+                    [effectiveUri] => https://ec2.us-east-1.amazonaws.com
+                    [headers] => Array
+                        (
+                            [content-type] => text/xml;charset=UTF-8
+                            [transfer-encoding] => chunked
+                            [vary] => Accept-Encoding
+                            [date] => Fri, 12 Jan 2018 20:32:23 GMT
+                            [server] => AmazonEC2
+                        )
+
+                    [transferStats] => Array
+                        (
+                            [http] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
