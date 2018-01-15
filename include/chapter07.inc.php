@@ -11,4 +11,9 @@ $ec2clientArguments = [
     'version' => '2016-11-15'
 ];
 
+$cWclientArguments = [
+    'region' => 'us-west-1',
+    'version' => '2010-08-01'
+];
+
 ?>

@@ -25,8 +25,11 @@ Chapter 6:
 
 Chapter 7:
 * include/chapter07.php
+* include/statistics.html.php
 * chapter_07/disable_mon.php
 * chapter_07/enable_mon.php
+* chapter_07/list_metrics.php
+* chapter_07/statistics_chart
 
 
 Note: The file advanced_html_dom.php
