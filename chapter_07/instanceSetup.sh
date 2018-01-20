@@ -15,5 +15,5 @@ find /var/www -type d -exec sudo chmod 2775 {} \;
 find /var/www -type f -exec sudo chmod 0664 {} \;
 echo '<?php phpinfo(); ?>' > phpinfo.php
 sudo mv phpinfo.php /var/www/html/
-echo '<?php print("PHP Information for instance $_SERVER[\'SERVER_NAME\'] ($_SERVER[\'SERVER_ADDR\'])!"); ?>' > index.php
+echo '<?php print("PHP Information for instance " . $_SERVER['\''SERVER_NAME'\''] . " (" . $_SERVER['\''SERVER_ADDR'\''] . ")!"); ?>' > index.php
 sudo mv index.php /var/www/html/
