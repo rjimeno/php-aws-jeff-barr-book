@@ -55,7 +55,7 @@ aws cloudwatch put-metric-alarm \
   --dimensions "Name=AutoScalingGroupName,Value=AutoScale" \
   --unit Percent \
   --period 60 \
-  --threshold 70 \
+  --threshold 0.3 \
   --comparison-operator GreaterThanOrEqualToThreshold  \
   --evaluation-periods 2 \
   --alarm-actions 'arn:aws:autoscaling:us-east-1:abc...'
@@ -69,7 +69,10 @@ aws cloudwatch put-metric-alarm \
   --dimensions "Name=AutoScalingGroupName,Value=AutoScale" \
   --unit Percent \
   --period 60 \
-  --threshold 30 \
+  --threshold 0.2 \
   --comparison-operator LessThanOrEqualToThreshold  \
   --evaluation-periods 2 \
   --alarm-actions 'arn:aws:autoscaling:us-east-1:xyz...'
+
+# Note: The thresholds above work for (virutally) load-less instances.
+#       You may stick to the values in the book instead (70 and 20 percent, I believe).
