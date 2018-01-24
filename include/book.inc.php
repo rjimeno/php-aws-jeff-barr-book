@@ -7,6 +7,8 @@ define('S3_ACL_PUBLIC', 'public-read');
 require_once('chapter04.inc.php'); // $s3clientArgs
 require_once('chapter06.inc.php'); // $sqsClientOptions
 require_once('chapter07.inc.php'); // $ec2clientArguments
+require_once('chapter08.inc.php'); // $sdbClientArguments
+
 
 if (isset($argc) && $argc>1) {
     $bucketArgs = array(
