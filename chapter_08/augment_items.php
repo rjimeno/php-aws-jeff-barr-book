@@ -44,7 +44,7 @@ foreach ($res1['Items'] as $item) {
         [
             'Name' => 'ModTime',
             'Value' => sprintf("%010s", $modTime),
-            'Replace' => true
+            'Replace' => false
         ]
     ];
 

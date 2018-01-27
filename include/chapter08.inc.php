@@ -10,4 +10,8 @@ $sdbClientArguments = [
     'region'  => 'us-east-1'
 ];
 
+function getItemAttributes($item) {
+    return $item['Attributes'];
+}
+
 ?>
