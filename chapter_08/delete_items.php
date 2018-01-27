@@ -17,12 +17,7 @@ use Aws\SimpleDb\SimpleDbClient;
 
 $sdb = new SimpleDbClient($sdbClientArguments);
 
-$attrss = [
-    [
-        'Name' => 'ModTime',
-        'Value' => '1516774335' // Erroneously required!!!
-    ]
-];
+// Note that 'Value' seem to be required by mistake. I believe it a bug in the library.
 
 $query = "select * from " . BOOK_FILE_DOMAIN;
 try {
