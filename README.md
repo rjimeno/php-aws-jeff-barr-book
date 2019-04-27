@@ -1,5 +1,9 @@
 # php-aws-jeff-barr-book
 
+By 2018 Jeff Barr's book is out of date. Some of the explanations and exercises are fantastic teaching tools but others are very frustrating because some of the code in the book either does not exist or does not work anymore.
+
+I made minimal changes and additions to Jeff's code to make it work while trying to preserve most of its teaching power. Also, in the process I learned a lot. RJ 
+
 Chapter 4:
 * include/book.inc.php
 * include/chapter06.php
